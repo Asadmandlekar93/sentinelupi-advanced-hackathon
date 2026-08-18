@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SentinelUPI | Intelligent Fraud Defense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="bg-grid"></div><div class="glow g1"></div><div class="glow g2"></div>
+<header><div class="brand"><div class="logo">S</div><div><b>Sentinel<span>UPI</span></b><small>AI FRAUD DEFENSE PLATFORM</small></div></div><div class="header-right"><span class="live"><i></i> ENGINE ONLINE</span><span id="clock"></span></div></header>
+<main>
+<section class="hero"><div><p class="eyebrow">INTELLIGENT UPI FRAUD DETECTION • SIH 2026</p><h1>Behavioural intelligence for <em>safer digital payments.</em></h1><p class="lead">A hybrid detection layer combining machine learning, anomaly detection and behavioural signals to score transactions in real time and trigger proportionate prevention.</p></div><div class="model-card"><span>MODEL STATUS</span><strong>HYBRID AI</strong><div><i></i> Random Forest + Anomaly Engine</div></div></section>
+
+<section class="kpis">
+<div><span>TRANSACTIONS</span><strong id="total">0</strong><small>session ledger</small></div><div><span>SAFE</span><strong class="green" id="safe">0</strong><small>allowed</small></div><div><span>FLAGGED</span><strong class="amber" id="suspicious">0</strong><small>monitored</small></div><div><span>HIGH RISK</span><strong class="red" id="high">0</strong><small>verify / block</small></div><div><span>AVG RISK</span><strong id="avgRisk">0%</strong><small>current stream</small></div>
+</section>
+
+<div class="layout">
+<section class="card simulator"><div class="title"><div><p class="eyebrow">01 / TRANSACTION LAB</p><h2>Simulate a UPI payment</h2></div><span class="tag">REAL-TIME</span></div>
+<div class="profiles"><button onclick="loadPreset('normal')">NORMAL</button><button onclick="loadPreset('suspicious')">SUSPICIOUS</button><button onclick="loadPreset('fraud')">FRAUD SCENARIO</button></div>
+<form id="form">
+<div class="amount"><span>₹</span><input id="amount" type="number" value="650"><small>AMOUNT</small></div>
+<div class="fields">
+<label>User ID<input id="user" value="U1007"></label><label>Usual average<input id="avg" type="number" value="1500"></label><label>Amount std. dev.<input id="std" type="number" value="600"></label>
+<label>Transaction hour<input id="hour" type="number" min="0" max="23" value="18"></label><label>Tx / last 5 min<input id="freq" type="number" value="1"></label><label>Minutes since last<input id="mins" type="number" value="90"></label>
+<label>Device<select id="device"><option>KNOWN</option><option>NEW</option></select></label><label>Location<select id="location"><option>NORMAL</option><option>UNUSUAL</option></select></label><label>Beneficiary<select id="beneficiary"><option>KNOWN</option><option>NEW</option></select></label>
+<label>Beneficiary risk <input id="benrisk" type="number" step=".01" value=".05"></label><label>Distance from last location (km)<input id="distance" type="number" value="5"></label><label>Failed auth attempts<input id="failed" type="number" value="0"></label>
+<label>Account age (days)<input id="age" type="number" value="540"></label>
+</div><button class="run" type="submit"><span>Run AI Risk Assessment</span><b>→</b></button></form>
+<div class="note">Simulation only — no real UPI, bank, wallet or payment credentials are accessed.</div>
+</section>
+
+<section class="card decision"><div class="title"><div><p class="eyebrow">02 / DECISION CENTER</p><h2>Risk assessment</h2></div><span id="level" class="tag">WAITING</span></div>
+<div class="score"><div class="score-ring" id="ring"><strong id="risk">--</strong><span>HYBRID RISK</span></div></div>
+<div class="score-grid"><div><span>ML FRAUD PROBABILITY</span><strong id="ml">--</strong></div><div><span>ANOMALY SCORE</span><strong id="anom">--</strong></div><div><span>MODEL CONFIDENCE</span><strong id="conf">--</strong></div></div>
+<div id="decisionText" class="decision-text">Analyze a transaction to generate an explainable security decision.</div>
+<div class="intervention"><span>RECOMMENDED INTERVENTION</span><strong id="action">—</strong></div>
+<div class="reasons"><span>TOP CONTRIBUTING SIGNALS</span><ul id="reasons"><li>Waiting for transaction signals…</li></ul></div>
+</section>
+</div>
+
+<section class="lower">
+<section class="card"><div class="title"><div><p class="eyebrow">03 / MODEL INTELLIGENCE</p><h2>What drives the model?</h2></div><span class="tag">TRAINED</span></div>
+<div class="model-metrics"><div><span>ROC-AUC</span><strong id="auc">--</strong></div><div><span>PRECISION</span><strong id="precision">--</strong></div><div><span>RECALL</span><strong id="recall">--</strong></div><div><span>TRAINING ROWS</span><strong id="samples">--</strong></div></div>
+<div id="importance" class="bars"></div>
+</section>
+<section class="card"><div class="title"><div><p class="eyebrow">04 / PREVENTION POLICY</p><h2>Adaptive response</h2></div></div>
+<div class="policy"><div class="p safe"><b>LOW</b><span>ALLOW</span><small>Normal behavioural profile</small></div><div class="p sus"><b>MEDIUM</b><span>MONITOR</span><small>Soft anomaly detected</small></div><div class="p high"><b>HIGH</b><span>STEP-UP VERIFY</span><small>Strong risk signals</small></div><div class="p crit"><b>CRITICAL</b><span>BLOCK</span><small>Multiple high-confidence signals</small></div></div>
+<div class="architecture"><div>TRANSACTION</div><i>→</i><div>FEATURE ENGINE</div><i>→</i><div>RF + ANOMALY</div><i>→</i><div>RISK ENGINE</div><i>→</i><div>INTERVENTION</div></div>
+</section>
+</section>
+
+<section class="card ledger"><div class="title"><div><p class="eyebrow">05 / SECURITY LEDGER</p><h2>Recent decisions</h2></div><div><button class="ghost" onclick="loadStats()">↻ Refresh</button><button class="ghost danger-btn" onclick="resetDemo()">Reset demo</button></div></div>
+<div class="table-wrap"><table><thead><tr><th>TX ID</th><th>USER</th><th>AMOUNT</th><th>ML PROB.</th><th>RISK</th><th>LEVEL</th><th>INTERVENTION</th><th>DECISION</th></tr></thead><tbody id="rows"></tbody></table></div></section>
+<footer><span>SentinelUPI — Intelligent UPI Fraud Detection</span><span>HACKATHON PROTOTYPE • SIMULATED DATA</span></footer>
+</main>
+<script src="/static/app.js"></script>
+</body></html>
